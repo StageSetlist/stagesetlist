@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Stage Setlist</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Stage Setlist – iPad app for live musicians: setlists, sheet music, metronome, MIDI and live tempo. Privacy policy and support.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Familjen+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: a running order. Hero like a stage monitor, then numbered "set" sections. */
+:root{
+  --bg:#f3f5f8; --surface:#ffffff; --ink:#121826; --muted:#566074; --line:#d9dee7;
+  --accent:#0a6cf0; --accent-ink:#ffffff; --beat:#11b981;
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --body:"Familjen Grotesk","Helvetica Neue",Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --stage:#0b1020; --stage-ink:#e8ecf5;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0b0f1a; --surface:#121827; --ink:#e8ecf5; --muted:#9aa5bb; --line:#242d42;
+  --accent:#4d9bff; --accent-ink:#06101f; --beat:#34d399; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0b0f1a; --surface:#121827; --ink:#e8ecf5; --muted:#9aa5bb; --line:#242d42;
+  --accent:#4d9bff; --accent-ink:#06101f; --beat:#34d399; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.6 var(--body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:760px;margin:0 auto}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+
+nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding-block:20px}
+.brand{font:800 18px/1 var(--display);letter-spacing:.01em;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:10px}
+.dots{display:flex;gap:4px}
+.dots i{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.dots i:first-child{background:var(--beat)}
+@media (prefers-reduced-motion:no-preference){
+  .dots i{animation:beat 2s infinite steps(1)}
+  .dots i:nth-child(1){animation-name:b1}.dots i:nth-child(2){animation-delay:.5s}
+  .dots i:nth-child(3){animation-delay:1s}.dots i:nth-child(4){animation-delay:1.5s}
+}
+@keyframes beat{0%{background:var(--ink)}25%,100%{background:var(--line)}}
+@keyframes b1{0%{background:var(--beat)}25%,100%{background:var(--line)}}
+.links{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center;font-size:15px}
+.links a{color:var(--muted);text-decoration:none}
+.links a:hover{color:var(--ink)}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.lang button{font:600 13px var(--body);border:0;background:transparent;color:var(--muted);padding:5px 11px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+
+.hero{background:var(--stage);color:var(--stage-ink);border-radius:18px;padding:40px 28px;margin-block:8px 40px;
+  border:3px solid #1d2a4a;box-shadow:inset 0 0 0 1px #2a3a63}
+.hero .bpm{font:500 13px var(--mono);letter-spacing:.08em;color:#7fb2ff;text-transform:uppercase}
+.hero h1{font:800 clamp(38px,8vw,64px)/1 var(--display);margin:.25em 0 .3em;letter-spacing:-.01em;text-wrap:balance}
+.hero p{max-width:34em;margin:0;color:#b9c3d8;font-size:18px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;padding:0;list-style:none}
+.chips li{font:500 13px var(--mono);border:1px solid #2f3f66;border-radius:6px;padding:4px 9px;color:#d5ddef}
+
+section{padding-block:12px 36px;border-top:1px solid var(--line)}
+.no{font:500 13px var(--mono);color:var(--muted);letter-spacing:.06em;padding-top:22px}
+h2{font:800 30px/1.15 var(--display);margin:.2em 0 .5em;text-wrap:balance}
+h3{font:700 19px/1.3 var(--display);margin:1.6em 0 .3em}
+p,li{max-width:65ch}
+ul{padding-left:1.2em}
+.updated{font:500 13px var(--mono);color:var(--muted)}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin-block:16px}
+.box strong{display:block;font-family:var(--display)}
+.contact{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:8px}
+.contact code{font:500 15px var(--mono);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 12px;user-select:all}
+.contact button{font:600 14px var(--body);border:0;border-radius:8px;padding:9px 14px;background:var(--accent);color:var(--accent-ink);cursor:pointer}
+details{border-bottom:1px solid var(--line);padding-block:12px}
+summary{font-weight:600;cursor:pointer}
+details p{margin:.5em 0 0;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding-block:24px 40px;color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<nav>
+  <a class="brand" href="#top"><span class="dots" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Stage Setlist</a>
+  <div class="links">
+    <a href="#privacy" data-l="fi">Tietosuoja</a><a href="#privacy" data-l="en">Privacy</a>
+    <a href="#support" data-l="fi">Tuki</a><a href="#support" data-l="en">Support</a>
+    <div class="lang" role="group" aria-label="Language">
+      <button id="btn-en" type="button" data-set="en">EN</button><button id="btn-fi" type="button" data-set="fi">FI</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ ENGLISH ============ -->
+<main data-l="en" id="top">
+  <header class="hero">
+    <div class="bpm">♩ = 120 · 4/4 · iPad</div>
+    <h1>Stage Setlist</h1>
+    <p>Your setlist, sheet music and metronome in one place on stage. Built by a working musician for live gigs.</p>
+    <ul class="chips"><li>Setlists</li><li>PDF sheet music</li><li>Apple Pencil notes</li><li>Metronome</li><li>Live tempo</li><li>MIDI</li><li>Page-turner pedals</li></ul>
+  </header>
+
+  <section id="privacy">
+    <div class="no">01 · PRIVACY POLICY</div>
+    <h2>Privacy Policy</h2>
+    <p class="updated">Last updated: 26 October 2026</p>
+
+    <div class="box"><strong>In short</strong>Stage Setlist does not collect, store or share your personal data. Everything you create stays on your iPad. There are no accounts, no ads, no analytics and no tracking.</div>
+
+    <h3>Who is responsible</h3>
+    <p>Stage Setlist is developed and published by Jani Leskinen, a private individual in Finland. Contact: stagesetlistapp@gmail.com.</p>
+
+    <h3>Data stored on your device</h3>
+    <p>Your songs, setlists, tags, folders, tempos, MIDI settings, imported PDF files and handwritten Apple Pencil notes are saved only inside the app on your iPad. The developer has no access to them. Deleting the app deletes this data.</p>
+
+    <h3>Microphone</h3>
+    <p>The app asks for microphone access only for the tempo detector (“Live tempo”). The audio is analysed in real time on your iPad to estimate the beats per minute. Audio is never recorded, saved or sent anywhere. You can turn microphone access off at any time in iPadOS Settings → Privacy &amp; Security → Microphone.</p>
+
+    <h3>MIDI and Bluetooth devices</h3>
+    <p>If you set up MIDI messages for a song, the app sends them only to the MIDI devices you have connected. Page-turner pedals are paired in iPadOS settings and work as keyboard input. No data from these devices is collected.</p>
+
+    <h3>Importing, sharing and backups</h3>
+    <p>When you import files (for example from Files, Google Drive, AirDrop or a forScore setlist) or share songs and setlists, the app uses Apple’s standard file and share features. Files go only where you choose. A backup file you create is saved to the location you pick; if that is iCloud Drive or another cloud service, that service’s own privacy policy applies.</p>
+
+    <h3>Data collected by the developer</h3>
+    <p>None. The app has no servers and makes no network connections for data collection. Apple may send the developer anonymous crash reports and app statistics only if you have agreed to share them with app developers in your iPadOS settings. When you test through TestFlight, feedback and screenshots you choose to send are delivered to the developer through Apple.</p>
+
+    <h3>Children</h3>
+    <p>The app does not collect data from anyone, including children.</p>
+
+    <h3>Your rights</h3>
+    <p>Because no personal data is collected, there is nothing to access, correct or delete on the developer’s side. If you email the developer, your message and email address are used only to answer you and are deleted when no longer needed. You have the right to lodge a complaint with the Finnish Data Protection Ombudsman (tietosuoja.fi).</p>
+
+    <h3>Changes</h3>
+    <p>If the app’s handling of data changes, this policy will be updated and the date above changed.</p>
+  </section>
+
+  <section id="support">
+    <div class="no">02 · SUPPORT</div>
+    <h2>Support</h2>
+    <p>Questions, bug reports or ideas from the stage are welcome. Please tell your iPad model, iPadOS version and what you were doing when the problem happened.</p>
+    <div class="contact"><code class="mail">stagesetlistapp@gmail.com</code><button type="button" class="copy">Copy email</button></div>
+
+    <h3>Common questions</h3>
+    <details><summary>The tempo detector says “too quiet, or no clear beat”.</summary><p>Check that microphone access is allowed in iPadOS Settings. Place the iPad where it hears the drums or the rhythm clearly, and adjust sensitivity in the Tempo Detector screen in the sidebar. The detector works best between about 70 and 200 BPM.</p></details>
+    <details><summary>How do I import a setlist from forScore?</summary><p>Export the setlist from forScore (include scores if you want the PDFs), then open the .4ss file with Stage Setlist from Files, AirDrop or the share sheet.</p></details>
+    <details><summary>My page-turner pedal does nothing.</summary><p>Pair the pedal in iPadOS Settings → Bluetooth first. Most pedals send arrow or page keys, which turn pages in Stage Mode.</p></details>
+    <details><summary>How do I keep my songs safe?</summary><p>Use Backup in the ⋯ menu and save the backup file to Files or iCloud Drive. Restore it from the same menu.</p></details>
+  </section>
+</main>
+
+<!-- ============ SUOMI ============ -->
+<main data-l="fi" id="top-fi">
+  <header class="hero">
+    <div class="bpm">♩ = 120 · 4/4 · iPad</div>
+    <h1>Stage Setlist</h1>
+    <p>Setlista, nuotit ja metronomi samassa paikassa lavalla. Keikkamuusikon tekemä sovellus keikkamuusikoille.</p>
+    <ul class="chips"><li>Setlistat</li><li>PDF-nuotit</li><li>Apple Pencil -merkinnät</li><li>Metronomi</li><li>Live-tempo</li><li>MIDI</li><li>Sivunkääntöpedaalit</li></ul>
+  </header>
+
+  <section id="tietosuoja">
+    <div class="no">01 · TIETOSUOJASELOSTE</div>
+    <h2>Tietosuojaseloste</h2>
+    <p class="updated">Päivitetty: 26.10.2026</p>
+
+    <div class="box"><strong>Lyhyesti</strong>Stage Setlist ei kerää, tallenna eikä jaa henkilötietojasi. Kaikki mitä teet sovelluksessa pysyy iPadillasi. Ei käyttäjätilejä, ei mainoksia, ei analytiikkaa eikä seurantaa.</div>
+
+    <h3>Rekisterinpitäjä</h3>
+    <p>Stage Setlistin on kehittänyt ja julkaissut Jani Leskinen, yksityishenkilö Suomesta. Yhteys: stagesetlistapp@gmail.com.</p>
+
+    <h3>Laitteelle tallennettavat tiedot</h3>
+    <p>Kappaleet, setlistat, tagit, kansiot, tempot, MIDI-asetukset, tuodut PDF-tiedostot ja Apple Pencil -merkinnät tallentuvat vain sovelluksen sisälle iPadillesi. Kehittäjällä ei ole niihin pääsyä. Sovelluksen poistaminen poistaa myös nämä tiedot.</p>
+
+    <h3>Mikrofoni</h3>
+    <p>Sovellus pyytää mikrofonin käyttöoikeutta vain tempotunnistinta (”Live tempo”) varten. Ääntä analysoidaan reaaliaikaisesti iPadilla iskujen määrän arvioimiseksi. Ääntä ei koskaan nauhoiteta, tallenneta eikä lähetetä minnekään. Voit poistaa luvan milloin tahansa: Asetukset → Tietosuoja ja suojaus → Mikrofoni.</p>
+
+    <h3>MIDI- ja Bluetooth-laitteet</h3>
+    <p>Jos kappaleelle on asetettu MIDI-viestejä, sovellus lähettää ne vain yhdistämillesi MIDI-laitteille. Sivunkääntöpedaalit yhdistetään iPadOS:n asetuksissa ja ne toimivat näppäimistösyötteenä. Laitteista ei kerätä tietoja.</p>
+
+    <h3>Tuonti, jakaminen ja varmuuskopiot</h3>
+    <p>Kun tuot tiedostoja (esim. Tiedostot-appista, Google Drivesta, AirDropilla tai forScore-setlistan) tai jaat kappaleita ja setlistoja, sovellus käyttää Applen tavallisia tiedosto- ja jakotoimintoja. Tiedostot menevät vain sinne, minne itse valitset. Varmuuskopio tallentuu valitsemaasi paikkaan; jos se on iCloud Drive tai muu pilvipalvelu, siihen sovelletaan kyseisen palvelun tietosuojaa.</p>
+
+    <h3>Kehittäjän keräämät tiedot</h3>
+    <p>Ei mitään. Sovelluksella ei ole palvelimia eikä se ota verkkoyhteyksiä tietojen keräämiseksi. Apple voi välittää kehittäjälle nimettömiä kaatumisraportteja ja tilastoja vain, jos olet sallinut tietojen jakamisen kehittäjille iPadOS:n asetuksissa. TestFlight-testauksessa itse lähettämäsi palaute ja kuvakaappaukset välittyvät kehittäjälle Applen kautta.</p>
+
+    <h3>Lapset</h3>
+    <p>Sovellus ei kerää tietoja keneltäkään, ei myöskään lapsilta.</p>
+
+    <h3>Oikeutesi</h3>
+    <p>Koska henkilötietoja ei kerätä, kehittäjällä ei ole tarkastettavia, korjattavia tai poistettavia tietoja. Jos lähetät sähköpostia, viestiäsi ja osoitettasi käytetään vain vastaamiseen ja ne poistetaan, kun niitä ei enää tarvita. Voit tehdä valituksen tietosuojavaltuutetulle (tietosuoja.fi).</p>
+
+    <h3>Muutokset</h3>
+    <p>Jos sovelluksen tietojenkäsittely muuttuu, tämä seloste päivitetään ja yllä oleva päivämäärä muutetaan.</p>
+  </section>
+
+  <section id="tuki">
+    <div class="no">02 · TUKI</div>
+    <h2>Tuki</h2>
+    <p>Kysymykset, vikailmoitukset ja keikoilla syntyneet ideat ovat tervetulleita. Kerro iPadin malli, iPadOS-versio ja mitä olit tekemässä, kun ongelma ilmeni.</p>
+    <div class="contact"><code class="mail">stagesetlistapp@gmail.com</code><button type="button" class="copy">Kopioi osoite</button></div>
+
+    <h3>Usein kysyttyä</h3>
+    <details><summary>Tempotunnistin sanoo ”too quiet, or no clear beat”.</summary><p>Tarkista, että mikrofonilupa on sallittu asetuksissa. Aseta iPad niin, että se kuulee rummut tai rytmin selvästi, ja säädä herkkyyttä sivupalkin Tempo Detector -näkymässä. Tunnistin toimii parhaiten noin 70–200 BPM:n alueella.</p></details>
+    <details><summary>Miten tuon setlistan forScoresta?</summary><p>Vie setlista forScoresta (valitse nuottien mukaan ottaminen, jos haluat PDF:t), ja avaa .4ss-tiedosto Stage Setlistillä Tiedostoista, AirDropilla tai jakovalikosta.</p></details>
+    <details><summary>Sivunkääntöpedaali ei toimi.</summary><p>Yhdistä pedaali ensin: Asetukset → Bluetooth. Useimmat pedaalit lähettävät nuoli- tai sivunäppäimiä, jotka kääntävät sivua Stage Modessa.</p></details>
+    <details><summary>Miten pidän kappaleeni tallessa?</summary><p>Tee varmuuskopio ⋯-valikon Backup-toiminnolla ja tallenna se Tiedostoihin tai iCloud Driveen. Palautus tehdään samasta valikosta.</p></details>
+  </section>
+</main>
+
+<footer>
+  <span data-l="en">© 2026 Jani Leskinen · Stage Setlist for iPad</span>
+  <span data-l="fi">© 2026 Jani Leskinen · Stage Setlist iPadille</span>
+</footer>
+</div>
+
+<script>
+(function(){
+  function setLang(l){
+    document.querySelectorAll('[data-l]').forEach(function(el){ el.hidden = el.getAttribute('data-l') !== l; });
+    document.querySelectorAll('[data-set]').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.set === l ? 'true' : 'false'); });
+    document.documentElement.lang = l;
+    try{ localStorage.setItem('ss-lang', l); }catch(e){}
+  }
+  var saved=null; try{ saved=localStorage.getItem('ss-lang'); }catch(e){}
+  var h=(location.hash||'').slice(1);
+  var lang = (h==='tietosuoja'||h==='tuki') ? 'fi' : (h==='privacy'||h==='support') ? 'en'
+           : saved || ((navigator.language||'').toLowerCase().indexOf('fi')===0 ? 'fi' : 'en');
+  setLang(lang);
+  document.querySelectorAll('[data-set]').forEach(function(b){ b.addEventListener('click', function(){ setLang(b.dataset.set); }); });
+  if(h){ var t=document.getElementById(h); if(t) t.scrollIntoView(); }
+  document.querySelectorAll('.copy').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var code=btn.parentNode.querySelector('.mail'), txt=code.textContent, old=btn.textContent;
+      var done=function(){ btn.textContent = document.documentElement.lang==='fi' ? 'Kopioitu' : 'Copied'; setTimeout(function(){btn.textContent=old;},1500); };
+      var sel=function(){ var r=document.createRange(); r.selectNodeContents(code); var s=getSelection(); s.removeAllRanges(); s.addRange(r); };
+      try{ navigator.clipboard.writeText(txt).then(done, sel); }catch(e){ sel(); }
+    });
+  });
+})();
+</script>
+</body>
+</html>
